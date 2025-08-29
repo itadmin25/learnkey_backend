@@ -1,0 +1,74 @@
+{
+  "countries": [
+    {
+      "name": "Australia",
+      "states": [
+        {
+          "name": "New South Wales",
+          "classes": [
+            {
+              "class": "10",
+              "years": [
+                {
+                  "year": "2025",
+                  "subjects": ["Mathematics", "Science", "English"]
+                },
+                {
+                  "year": "2026",
+                  "subjects": ["Mathematics", "Science", "English"]
+                }
+              ]
+            },
+            {
+              "class": "12",
+              "years": [
+                {
+                  "year": "2025",
+                  "subjects": ["Physics", "Chemistry", "Biology"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Victoria",
+          "classes": [
+            {
+              "class": "10",
+              "years": [
+                {
+                  "year": "2025",
+                  "subjects": ["Mathematics", "History"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Queensland",
+          "classes": []
+        },
+        {
+          "name": "Western Australia",
+          "classes": []
+        },
+        {
+          "name": "South Australia",
+          "classes": []
+        },
+        {
+          "name": "Tasmania",
+          "classes": []
+        },
+        {
+          "name": "Australian Capital Territory",
+          "classes": []
+        },
+        {
+          "name": "Northern Territory",
+          "classes": []
+        }
+      ]
+    }
+  ]
+}
