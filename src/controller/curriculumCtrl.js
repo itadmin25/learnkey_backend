@@ -3,6 +3,8 @@ const Curriculum = require("../model/curriculumModel.js");
 const Book = require("../model/bookModel.js");
 const { uploadToS3 } = require("../helper/s3.js");
 const { extractAndPrepare } = require("../helper/pdfExtract.js");
+const { embedAndSaveText } = require("../helper/qdrant.js");
+
 const fs = require("fs");
 const axios = require("axios");
 
@@ -35,11 +37,10 @@ module.exports = {
       const response = await axios.get(s3Data, { responseType: "arraybuffer" });
       const pdfBuffer = Buffer.from(response.data, "binary");
 
-      // Use helper to extract + clean + tokenize
+      // Extract + clean + tokenize
       const { text: extractedText, tokenCount } = await extractAndPrepare(pdfBuffer);
-
       console.log("Token count:", tokenCount);
-
+      
       // Decide type
       let bookType = "pdf";
       let textData = "";
@@ -56,7 +57,24 @@ module.exports = {
       });
       await newBook.save();
 
-      // Check if curriculum already exists
+      // Save in Qdrant (only if tokenCount > 8000)
+      if (tokenCount > 1000) {
+        console.log("Dededed")
+        await embedAndSaveText({
+          text: extractedText,
+          metadata: {
+            bookId: String(newBook._id),
+            userId,
+            countryId,
+            stateId,
+            yearId,
+            subjectId,
+            s3Url: s3Data,
+          },
+        });
+      }
+
+      // Save in Curriculum collection
       let existingCurriculum = await Curriculum.findOne({
         userId,
         countryId,
@@ -66,14 +84,11 @@ module.exports = {
       });
 
       let newCurriculum;
-
       if (existingCurriculum) {
-        // If exists, push new bookId into files array
         existingCurriculum.files.push(newBook._id);
         await existingCurriculum.save();
         newCurriculum = existingCurriculum;
       } else {
-        // Otherwise, create a new curriculum
         newCurriculum = new Curriculum({
           userId,
           files: [newBook._id],
@@ -85,10 +100,9 @@ module.exports = {
         await newCurriculum.save();
       }
 
-      // Delete file from local uploads folder
+      // Delete local temp file
       fs.unlinkSync(req.file.path);
 
-      // Response
       return res.status(200).json({
         success: true,
         message: "Curriculum uploaded successfully",
