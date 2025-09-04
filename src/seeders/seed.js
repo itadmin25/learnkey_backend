@@ -19,10 +19,11 @@ const importData = async () => {
         await mongoose.connect(MONGO_URI);
 
         const data = readJSON("pairs.au.json");
-        await State.deleteMany({});
-        await Country.deleteMany({});
-        await Year.deleteMany({});
-        await Subject.deleteMany({});
+        // await State.deleteMany({});
+        // await Country.deleteMany({});
+        // await Class.deleteMany({});
+        // await Year.deleteMany({});
+        // await Subject.deleteMany({});
 
         for (const countryObj of data.countries) {
             // Insert country

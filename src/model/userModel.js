@@ -31,11 +31,12 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: [
+            "admin",
             "student",
             "teacher"
         ]
     },
-    year: {
+    class: {
         type: [String],
     },
     subjects: {
