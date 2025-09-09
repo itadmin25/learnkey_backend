@@ -1,19 +1,44 @@
 const AWS = require("aws-sdk");
-const Curriculum = require("../model/curriculumModel.js");
-const Book = require("../model/bookModel.js");
-const { uploadToS3 } = require("../helper/s3.js");
-const { extractAndPrepare } = require("../helper/pdfExtract.js");
-const { embedAndSaveText } = require("../helper/qdrant.js");
-
 const fs = require("fs");
 const axios = require("axios");
+
+const Curriculum = require("../model/curriculumModel.js");
+const Book = require("../model/bookModel.js");
+const Country = require("../model/countryModel");
+const State = require("../model/stateModel");
+const Class = require("../model/classModel");
+const Year = require("../model/yearModel");
+const Subject = require("../model/subjectModel");
+
+const { uploadToS3 } = require("../helper/s3.js");
+const pdfParse = require("pdf-parse");
+
+// const { extractAndPrepare } = require("../helper/pdfExtract.js");
+
+const GPT3Tokenizer = require("gpt3-tokenizer").default;
+const { embedAndSaveText } = require("../helper/qdrant.js");
+
+
+
+const { QdrantClient } = require("@qdrant/js-client-rest");
+
+const qdrantClient = new QdrantClient({
+  url: process.env.QDRANT_URL || "http://localhost:6333",
+});
+
+// Token count helper
+function countTokens(text) {
+  const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
+  return tokenizer.encode(text).bpe.length;
+}
+
 
 module.exports = {
   addCurriculumData: async (req, res) => {
     try {
-      const { userId, countryId, stateId, yearId, subjectId } = req.body;
+      const { userId, countryId, stateId, yearId, classId, subjectId } = req.body;
 
-      // Validate file
+      // ✅ Validate file
       if (!req.file) {
         return res.status(400).json({
           success: false,
@@ -21,7 +46,7 @@ module.exports = {
         });
       }
 
-      // Validate required fields
+      // ✅ Validate required fields
       if (!countryId || !stateId || !yearId || !subjectId) {
         return res.status(400).json({
           success: false,
@@ -29,37 +54,54 @@ module.exports = {
         });
       }
 
-      // Upload file to S3
+      // ✅ Step 1: Extract text locally (before upload)
+      const pdfBuffer = fs.readFileSync(req.file.path);
+      const pdfData = await pdfParse(pdfBuffer);
+      const extractedText = pdfData.text;
+
+      // ✅ Step 2: Count tokens
+      const tokenCount = 100000;
+      console.log("📊 Token count:", tokenCount);
+
+      // ✅ Step 3: Upload to S3
       const folderName = "curriculums";
-      const s3Data = await uploadToS3(req.file, folderName);
+      const s3Url = await uploadToS3(req.file, folderName);
 
-      // Fetch PDF from S3
-      const response = await axios.get(s3Data, { responseType: "arraybuffer" });
-      const pdfBuffer = Buffer.from(response.data, "binary");
-
-      // Extract + clean + tokenize
-      const { text: extractedText, tokenCount } = await extractAndPrepare(pdfBuffer);
-      console.log("Token count:", tokenCount);
-      
-      // Decide type
+      // ✅ Step 4: Decide book type
       let bookType = "pdf";
       let textData = "";
+
+      // If ≤ 8k tokens → save text only (skip Qdrant)
       if (tokenCount <= 8000) {
         bookType = "text";
         textData = extractedText;
       }
 
-      // Save in Book collection
+      // ✅ Step 5: Save in Book collection
       const newBook = new Book({
-        url: s3Data,
+        url: s3Url,
         type: bookType,
         text: textData,
       });
       await newBook.save();
 
-      // Save in Qdrant (only if tokenCount > 8000)
-      if (tokenCount > 1000) {
-        console.log("Dededed")
+      // ✅ Step 6: Fetch Class, Year, Subject names
+      const classDoc = await Class.findById(classId).select("class");
+      const yearDoc = await Year.findById(yearId).select("year");
+      const subjectDoc = await Subject.findById(subjectId).select("name");
+      console.log(classDoc, yearDoc, subjectDoc)
+      if (!classDoc || !yearDoc || !subjectDoc) {
+        return res.status(404).json({
+          success: false,
+          message: "Class, Year, or Subject not found",
+        });
+      }
+
+      // ✅ Step 7: Build collection name
+      const collectionName = `${classDoc.class}_${yearDoc.year}_${subjectDoc.name}`;
+      console.log(collectionName)
+      // ✅ Step 8: If > 8k tokens → embed + push into Qdrant
+      if (tokenCount > 8000) {
         await embedAndSaveText({
           text: extractedText,
           metadata: {
@@ -68,18 +110,21 @@ module.exports = {
             countryId,
             stateId,
             yearId,
+            classId,
             subjectId,
-            s3Url: s3Data,
+            s3Url,
           },
+          collectionName,
         });
       }
 
-      // Save in Curriculum collection
+      // ✅ Step 9: Save in Curriculum collection
       let existingCurriculum = await Curriculum.findOne({
         userId,
         countryId,
         stateId,
         yearId,
+        classId,
         subjectId,
       });
 
@@ -95,13 +140,16 @@ module.exports = {
           countryId,
           stateId,
           yearId,
+          classId,
           subjectId,
         });
         await newCurriculum.save();
       }
 
-      // Delete local temp file
-      fs.unlinkSync(req.file.path);
+      // ✅ Step 10: Delete local temp file
+      if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
 
       return res.status(200).json({
         success: true,
@@ -113,7 +161,7 @@ module.exports = {
         },
       });
     } catch (error) {
-      console.error("Error in addCurriculumData:", error);
+      console.error("❌ Error in addCurriculumData:", error);
 
       if (req.file && req.file.path && fs.existsSync(req.file.path)) {
         fs.unlinkSync(req.file.path);
@@ -126,4 +174,136 @@ module.exports = {
       });
     }
   },
+  getQudrantCollections: async (req, res) => {
+    try {
+      const collections = await qdrantClient.getCollections();
+      res.status(200).json({
+        success: true,
+        collections: collections.collections.map(c => c.name),
+      });
+    } catch (error) {
+      console.error("Error fetching collections:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  },
+  getCollectionByName: async (req, res) => {
+    try {
+      const { name } = req.query;
+
+      const points = await qdrantClient.scroll(name, {
+        limit: 50,
+      });
+
+      res.status(200).json({
+        success: true,
+        collection: name,
+        points: points.points,
+      });
+    } catch (error) {
+      console.error("Error fetching points:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  },
+  availableStates: async (req, res) => {
+    try {
+      const curriculum = await Curriculum.find({}).populate("stateId", "name");
+      console.log(curriculum)
+      // Get unique states
+      const uniqueStates = {};
+      curriculum.forEach(c => {
+        if (c.stateId) {
+          uniqueStates[c.stateId._id] = c.stateId.name;
+        }
+      });
+
+      // Convert to array
+      const statesArray = Object.keys(uniqueStates).map(id => ({
+        _id: id,
+        name: uniqueStates[id]
+      }));
+
+      res.status(200).json({
+        success: true,
+        message: "successfully get All the States",
+        data: statesArray
+      });
+    } catch (err) {
+      res.status(500).json({
+        sucess: false,
+        error: err.message
+      });
+    }
+  },
+  availableClasses: async (req, res) => {
+    try {
+      const { stateId } = req.query;
+
+      if (!stateId) {
+        return res.status(400).json({ message: "stateId is required" });
+      }
+
+      // Find all curriculums for this state
+      const curriculums = await Curriculum.find({ stateId })
+        .populate("classId", "class"); // only fetch class name
+      // Extract unique classIds
+      const uniqueClasses = {};
+      curriculums.forEach(c => {
+        if (c.classId) {
+          uniqueClasses[c.classId._id] = c.classId.class;
+        }
+      });
+
+      // Convert into array
+      const classes = Object.keys(uniqueClasses).map(id => ({
+        _id: id,
+        name: uniqueClasses[id]
+      }));
+
+      res.status(200).json({
+        success: true,
+        message: "successfully get all the classes",
+        data: classes
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+  availableSubjects: async (req, res) => {
+    try {
+      const { classId } = req.query;
+
+      if (!classId) {
+        return res.status(400).json({ message: "classId is required" });
+      }
+
+      // Find all curriculums for this class
+      const curriculums = await Curriculum.find({ classId })
+        .populate("subjectId", "name"); // only fetch subject name
+
+      // Extract unique subjects
+      const uniqueSubjects = {};
+      curriculums.forEach(c => {
+        if (c.subjectId) {
+          uniqueSubjects[c.subjectId._id] = c.subjectId.name;
+        }
+      });
+
+      // Convert into array
+      const subjects = Object.keys(uniqueSubjects).map(id => ({
+        _id: id,
+        name: uniqueSubjects[id]
+      }));
+
+      res.status(200).json({
+        success: true,
+        message: "successfully get all the subjects",
+        data: subjects
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+
+
+
 };

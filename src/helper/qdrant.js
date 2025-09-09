@@ -1,113 +1,84 @@
-// helper/embedAndQdrant.js
-const { QdrantClient } = require("@qdrant/js-client-rest");
 const axios = require("axios");
-const { v4: uuidv4 } = require("uuid");
 
-const qdrant = new QdrantClient({
-  url: process.env.QDRANT_URL || "http://localhost:6333",
-});
+const OLLAMA_URL = "http://3.24.151.87:11434/api/embeddings";
+const QDRANT_URL = "http://localhost:6333";
+const MODEL = "nomic-embed-text";
+const MAX_CHARS = 2000;
+const BATCH_SIZE = 10;
 
-const COLLECTION = "class:year:subject";
-const VECTOR_DIM = 768; // Nomic embedding dimension
-
-/**
- * Ensure collection exists in Qdrant
- */
-async function ensureCollection() {
-  const { collections } = await qdrant.getCollections();
-  const exists = collections.some((c) => c.name === COLLECTION);
-
-  if (!exists) {
-    await qdrant.createCollection(COLLECTION, {
-      vectors: {
-        size: VECTOR_DIM,
-        distance: "Cosine",
-      },
-    });
-  }
-}
-
-/**
- * Split text into chunks (non-empty)
- */
-function chunkText(text, chunkSize = 1000, overlap = 100) {
-  const chunks = [];
-  for (let i = 0; i < text.length; i += chunkSize - overlap) {
-    const chunk = text.slice(i, i + chunkSize).trim();
-    if (chunk) chunks.push(chunk);
+// Split into chunks
+function chunkText(text) {
+  let chunks = [];
+  for (let i = 0; i < text.length; i += MAX_CHARS) {
+    chunks.push(text.slice(i, i + MAX_CHARS));
   }
   return chunks;
 }
 
-/**
- * Get embedding from local Ollama (nomic-embed-text)
- */
-async function getNomicEmbedding(text) {
+// Get embedding
+async function getEmbedding(text) {
   try {
-    const response = await axios.post("http://localhost:11434/api/embeddings", {
-      model: "nomic-embed-text",
-      input: text,
+    const response = await axios.post(OLLAMA_URL, {
+      model: MODEL,
+      prompt: text,
     });
-
-    console.log("Ollama response:", response.data); // log to check structure
-
-    // Adjust depending on actual response from Ollama
-    const embedding =
-      response.data?.embedding || response.data?.embeddings?.[0]?.embedding;
-
-    if (!embedding || embedding.length !== VECTOR_DIM) {
-      throw new Error(
-        `Invalid embedding received. Expected dimension ${VECTOR_DIM}, got ${
-          embedding?.length || 0
-        }`
-      );
-    }
-
-    return embedding;
+    return response.data.embedding;
   } catch (err) {
-    console.error("Error getting embedding from Ollama:", err.message);
-    throw err;
+    console.error("Embedding error:", err.response?.data || err.message);
+    return null;
   }
 }
 
-/**
- * Embed text chunks and save to Qdrant
- * metadata can include userId, subject, etc.
- */
-async function embedAndSaveText({ text, metadata }) {
+// Create collection
+async function createCollection(collectionName, vectorSize) {
   try {
-    await ensureCollection();
-
-    const chunks = chunkText(text, 1000);
-    if (chunks.length === 0) {
-      console.warn("No valid text chunks to embed.");
-      return;
-    }
-
-    const embeddings = await Promise.all(
-      chunks.map(async (chunk) => {
-        const vector = await getNomicEmbedding(chunk);
-        return { text: chunk, vector };
-      })
-    );
-
-    const points = embeddings.map((item) => ({
-      id: uuidv4(),
-      vector: item.vector,
-      payload: {
-        text: item.text,
-        ...metadata, // e.g., userId
-      },
-    }));
-
-    const res = await qdrant.upsert(COLLECTION, { points });
-    console.log(
-      `✅ Saved ${points.length} chunks into Qdrant (Nomic embeddings)`,
-      res
-    );
+    await axios.put(`${QDRANT_URL}/collections/${collectionName}`, {
+      vectors: { size: vectorSize, distance: "Cosine" },
+    });
+    console.log(`✅ Collection "${collectionName}" created/exists`);
   } catch (err) {
-    console.error("Error in embedAndSaveText:", err.message);
-    throw err;
+    console.error("Error creating collection:", err.response?.data || err.message);
+  }
+}
+
+// Insert into Qdrant
+async function insertToQdrant(collectionName, chunks, embeddings, metadata) {
+  const points = embeddings.map((embedding, idx) => ({
+    id: Date.now() + idx,
+    vector: embedding,
+    payload: { text: chunks[idx], ...metadata },
+  }));
+
+  try {
+    await axios.put(`${QDRANT_URL}/collections/${collectionName}/points?wait=true`, {
+      points,
+    });
+    console.log(`✅ Inserted ${points.length} points into Qdrant`);
+  } catch (err) {
+    console.error("Error inserting points:", err.response?.data || err.message);
+  }
+}
+
+// Process in batches
+async function processInBatches(chunks) {
+  let embeddings = [];
+  for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
+    const batch = chunks.slice(i, i + BATCH_SIZE);
+    console.log(`🚀 Processing batch ${i / BATCH_SIZE + 1}`);
+    const results = await Promise.all(batch.map(chunk => getEmbedding(chunk)));
+    embeddings.push(...results.filter(Boolean));
+  }
+  return embeddings;
+}
+
+async function embedAndSaveText({ text, collectionName, metadata }) {
+  const chunks = chunkText(text);
+  console.log(`📄 Text split into ${chunks.length} chunks`);
+
+  const embeddings = await processInBatches(chunks);
+  if (embeddings.length > 0) {
+    await createCollection(collectionName, embeddings[0].length);
+    await insertToQdrant(collectionName, chunks, embeddings, metadata);
   }
 }
 
