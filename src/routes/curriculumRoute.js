@@ -9,7 +9,6 @@ router.get('/getQdrantCollections', curriculumCtrl.getQudrantCollections)
 router.get('/getQdrantCollectionByName', curriculumCtrl.getCollectionByName)
 
 router.get('/availableClasses', curriculumCtrl.availableClasses)
-router.get('/availableStates', curriculumCtrl.availableStates)
 router.get('/availableSubjects', curriculumCtrl.availableSubjects)
 
 

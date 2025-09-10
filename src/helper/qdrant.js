@@ -82,4 +82,4 @@ async function embedAndSaveText({ text, collectionName, metadata }) {
   }
 }
 
-module.exports = { embedAndSaveText };
+module.exports = { embedAndSaveText, getEmbedding };

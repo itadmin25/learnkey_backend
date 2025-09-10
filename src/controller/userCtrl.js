@@ -1,6 +1,7 @@
 const userModel = require('../model/userModel.js');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { get } = require('mongoose');
 
 module.exports = {
     register: async (req, res) => {
@@ -83,26 +84,26 @@ module.exports = {
     },
     setupProfile: async (req, res) => {
         try {
-            const { userId, role, year, subjects } = req.body;
+            const { userId, role, classes, subjects } = req.body;
 
-            if (!userId || !role || !subjects || !year) {
-                return res.status(400).json({success: false, message: "userId, role, year and subject are required" });
+            if (!userId || !role || !subjects || !classes) {
+                return res.status(400).json({success: false, message: "userId, role, classes and subjects are required" });
             }
 
             if (!["student", "teacher"].includes(role)) {
                 return res.status(400).json({success: false, message: "Invalid role" });
             }
 
-            if (role === "student" && year.length > 1) {
-                return res.status(400).json({ success: false, message: "Student can select only one year" });
+            if (role === "student" && classes.length > 1) {
+                return res.status(400).json({ success: false, message: "Student can select only one class" });
             }
-            if (role === "teacher" && year.length < 1) {
-                return res.status(400).json({ success: false, message: "Teacher must select at least one year" });
+            if (role === "teacher" && classes.length < 1) {
+                return res.status(400).json({ success: false, message: "Teacher must select at least one class" });
             }
 
             const updatedUser = await userModel.findByIdAndUpdate(
                 userId,
-                { role, year, subjects, isprofileSetup: true },
+                { role, classes, subjects, isprofileSetup: true },
                 { new: true }
             );
 
@@ -185,6 +186,58 @@ module.exports = {
 
         } catch (err) {
             console.error("GetUserById error:", err);
+            return res.status(500).json({ success: false, message: "Something went wrong", error: err.message });
+        }
+    },
+
+    getclassesByUserId: async (req, res) => {
+        try {
+            const { userId } = req.query;
+
+            if (!userId) {
+                return res.status(400).json({ success: false, message: "UserId is required" });
+            }
+
+            const user = await userModel.findById(userId).populate('classes', 'class');
+
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: "Classes fetched successfully",
+                data: user.classes
+            });
+
+        } catch (err) {
+            console.error("GetclassesByUserId error:", err);
+            return res.status(500).json({ success: false, message: "Something went wrong", error: err.message });
+        }
+    },
+
+    getsubjectsByUserId: async (req, res) => {
+        try {
+            const { userId } = req.query;
+
+            if (!userId) {
+                return res.status(400).json({ success: false, message: "UserId is required" });
+            }
+
+            const user = await userModel.findById(userId).populate('subjects', 'name');
+
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: "Subjects fetched successfully",
+                data: user.subjects
+            });
+
+        } catch (err) {
+            console.error("GetsubjectsByUserId error:", err);
             return res.status(500).json({ success: false, message: "Something went wrong", error: err.message });
         }
     }

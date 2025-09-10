@@ -9,6 +9,8 @@ router.post('/setupProfile',jwtAuth, userCtrl.setupProfile)
 router.post('/login', userCtrl.login)
 router.post("/updateUser", jwtAuth, userCtrl.updateUser);
 router.get('/getUserById',jwtAuth,userCtrl.getUserById)
+router.get('/getclassesByUserId',jwtAuth,userCtrl.getclassesByUserId)
+router.get('/getsubjectsByUserId',jwtAuth,userCtrl.getsubjectsByUserId)
 
 
 module.exports = router;

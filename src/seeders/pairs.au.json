@@ -2,1915 +2,237 @@
   "countries": [
     {
       "name": "Australia",
-      "states": [
+      "classes": [
         {
-          "name": "New South Wales",
-          "classes": [
+          "class": "Kindergarten",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Victoria",
-          "classes": [
+          "class": "1",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Queensland",
-          "classes": [
+          "class": "2",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Western Australia",
-          "classes": [
+          "class": "3",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "South Australia",
-          "classes": [
+          "class": "4",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Tasmania",
-          "classes": [
+          "class": "5",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Australian Capital Territory",
-          "classes": [
+          "class": "6",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]
         },
         {
-          "name": "Northern Territory",
-          "classes": [
+          "class": "7",
+          "years": [
             {
-              "class": "Kindergarten",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "class": "8",
+          "years": [
             {
-              "class": "1",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "class": "9",
+          "years": [
             {
-              "class": "2",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "class": "10",
+          "years": [
             {
-              "class": "3",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "class": "11",
+          "years": [
             {
-              "class": "4",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
-            },
+            }
+          ]
+        },
+        {
+          "class": "12",
+          "years": [
             {
-              "class": "5",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "6",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "7",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "8",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "9",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "10",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "11",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
-              ]
-            },
-            {
-              "class": "12",
-              "years": [
-                {
-                  "year": "2025",
-                  "subjects": [
-                    "English",
-                    "Mathematics",
-                    "Science",
-                    "Humanities and Social Sciences",
-                    "Health and Physical Education",
-                    "The Arts",
-                    "Technologies",
-                    "Languages"
-                  ]
-                }
+              "year": "2025",
+              "subjects": [
+                "English",
+                "Mathematics",
+                "Science",
+                "Humanities and Social Sciences",
+                "Health and Physical Education",
+                "The Arts",
+                "Technologies",
+                "Languages"
               ]
             }
           ]

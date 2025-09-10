@@ -14,6 +14,7 @@ const dbConnection = require('./src/database/db.js');
 const userRoutes = require('./src/routes/userRoute.js');
 const masterDataRoutes = require('./src/routes/masterDataRoute.js')
 const curriculumRoutes = require('./src/routes/curriculumRoute.js')
+const chatRoutes = require("./src/routes/chatRoutes.js");
 
 // ✅ Global Middleware AFTER webhook
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(cors({
 app.use('/api', userRoutes);
 app.use('/api', masterDataRoutes);
 app.use('/api', curriculumRoutes);
+app.use("/api", chatRoutes);
 
 // Start server
 app.listen(port, () => {

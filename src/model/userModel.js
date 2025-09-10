@@ -36,12 +36,19 @@ const userSchema = new mongoose.Schema({
             "teacher"
         ]
     },
-    class: {
-        type: [String],
-    },
-    subjects: {
-        type: [String],
-    },
+    classes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Class", 
+        }
+    ],
+
+    subjects: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Subject",
+        }
+    ],
     isprofileSetup: {
         type: Boolean,
         default: false

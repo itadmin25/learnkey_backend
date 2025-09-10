@@ -5,23 +5,16 @@ const axios = require("axios");
 const Curriculum = require("../model/curriculumModel.js");
 const Book = require("../model/bookModel.js");
 const Country = require("../model/countryModel");
-const State = require("../model/stateModel");
-const Class = require("../model/classModel");
+const Class = require("../model/classModel.js");
 const Year = require("../model/yearModel");
 const Subject = require("../model/subjectModel");
 
 const { uploadToS3 } = require("../helper/s3.js");
 const pdfParse = require("pdf-parse");
-
-// const { extractAndPrepare } = require("../helper/pdfExtract.js");
-
 const GPT3Tokenizer = require("gpt3-tokenizer").default;
 const { embedAndSaveText } = require("../helper/qdrant.js");
 
-
-
 const { QdrantClient } = require("@qdrant/js-client-rest");
-
 const qdrantClient = new QdrantClient({
   url: process.env.QDRANT_URL || "http://localhost:6333",
 });
@@ -32,11 +25,10 @@ function countTokens(text) {
   return tokenizer.encode(text).bpe.length;
 }
 
-
 module.exports = {
   addCurriculumData: async (req, res) => {
     try {
-      const { userId, countryId, stateId, yearId, classId, subjectId } = req.body;
+      const { userId, countryId, yearId, classId, subjectId } = req.body;
 
       // ✅ Validate file
       if (!req.file) {
@@ -47,7 +39,7 @@ module.exports = {
       }
 
       // ✅ Validate required fields
-      if (!countryId || !stateId || !yearId || !subjectId) {
+      if (!countryId || !yearId || !classId || !subjectId) {
         return res.status(400).json({
           success: false,
           message: "Missing required fields",
@@ -108,7 +100,6 @@ module.exports = {
             bookId: String(newBook._id),
             userId,
             countryId,
-            stateId,
             yearId,
             classId,
             subjectId,
@@ -122,7 +113,6 @@ module.exports = {
       let existingCurriculum = await Curriculum.findOne({
         userId,
         countryId,
-        stateId,
         yearId,
         classId,
         subjectId,
@@ -138,7 +128,6 @@ module.exports = {
           userId,
           files: [newBook._id],
           countryId,
-          stateId,
           yearId,
           classId,
           subjectId,
@@ -147,7 +136,7 @@ module.exports = {
       }
 
       // ✅ Step 10: Delete local temp file
-      if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      if (req.file?.path && fs.existsSync(req.file.path)) {
         fs.unlinkSync(req.file.path);
       }
 
@@ -163,7 +152,7 @@ module.exports = {
     } catch (error) {
       console.error("❌ Error in addCurriculumData:", error);
 
-      if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      if (req.file?.path && fs.existsSync(req.file.path)) {
         fs.unlinkSync(req.file.path);
       }
 
@@ -174,6 +163,7 @@ module.exports = {
       });
     }
   },
+
   getQudrantCollections: async (req, res) => {
     try {
       const collections = await qdrantClient.getCollections();
@@ -186,14 +176,11 @@ module.exports = {
       res.status(500).json({ success: false, error: error.message });
     }
   },
+
   getCollectionByName: async (req, res) => {
     try {
       const { name } = req.query;
-
-      const points = await qdrantClient.scroll(name, {
-        limit: 50,
-      });
-
+      const points = await qdrantClient.scroll(name, { limit: 50 });
       res.status(200).json({
         success: true,
         collection: name,
@@ -204,48 +191,16 @@ module.exports = {
       res.status(500).json({ success: false, error: error.message });
     }
   },
-  availableStates: async (req, res) => {
-    try {
-      const curriculum = await Curriculum.find({}).populate("stateId", "name");
-      console.log(curriculum)
-      // Get unique states
-      const uniqueStates = {};
-      curriculum.forEach(c => {
-        if (c.stateId) {
-          uniqueStates[c.stateId._id] = c.stateId.name;
-        }
-      });
 
-      // Convert to array
-      const statesArray = Object.keys(uniqueStates).map(id => ({
-        _id: id,
-        name: uniqueStates[id]
-      }));
-
-      res.status(200).json({
-        success: true,
-        message: "successfully get All the States",
-        data: statesArray
-      });
-    } catch (err) {
-      res.status(500).json({
-        sucess: false,
-        error: err.message
-      });
-    }
-  },
   availableClasses: async (req, res) => {
     try {
-      const { stateId } = req.query;
-
-      if (!stateId) {
-        return res.status(400).json({ message: "stateId is required" });
+      const { countryId } = req.query;
+      if (!countryId) {
+        return res.status(400).json({ message: "countryId is required" });
       }
 
-      // Find all curriculums for this state
-      const curriculums = await Curriculum.find({ stateId })
-        .populate("classId", "class"); // only fetch class name
-      // Extract unique classIds
+      const curriculums = await Curriculum.find({ countryId }).populate("classId", "class");
+
       const uniqueClasses = {};
       curriculums.forEach(c => {
         if (c.classId) {
@@ -253,34 +208,30 @@ module.exports = {
         }
       });
 
-      // Convert into array
       const classes = Object.keys(uniqueClasses).map(id => ({
         _id: id,
-        name: uniqueClasses[id]
+        name: uniqueClasses[id],
       }));
 
       res.status(200).json({
         success: true,
-        message: "successfully get all the classes",
-        data: classes
+        message: "Successfully fetched all classes",
+        data: classes,
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   },
+
   availableSubjects: async (req, res) => {
     try {
       const { classId } = req.query;
-
       if (!classId) {
         return res.status(400).json({ message: "classId is required" });
       }
 
-      // Find all curriculums for this class
-      const curriculums = await Curriculum.find({ classId })
-        .populate("subjectId", "name"); // only fetch subject name
+      const curriculums = await Curriculum.find({ classId }).populate("subjectId", "name");
 
-      // Extract unique subjects
       const uniqueSubjects = {};
       curriculums.forEach(c => {
         if (c.subjectId) {
@@ -288,22 +239,18 @@ module.exports = {
         }
       });
 
-      // Convert into array
       const subjects = Object.keys(uniqueSubjects).map(id => ({
         _id: id,
-        name: uniqueSubjects[id]
+        name: uniqueSubjects[id],
       }));
 
       res.status(200).json({
         success: true,
-        message: "successfully get all the subjects",
-        data: subjects
+        message: "Successfully fetched all subjects",
+        data: subjects,
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   },
-
-
-
 };

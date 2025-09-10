@@ -1,32 +1,28 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const messageSchema = new Schema({
-    role: {
-        type: String,
-        enum: ["student", "teacher"],
-        required: true
-    },
-    content: {
-        type: String,
-        required: true
-    },
-    inputTokens: { type: Number, default: 0 },
-    outputTokens: { type: Number, default: 0 },
-    totalTokens: { type: Number, default: 0 },
-}, { timestamps: true });
+const fileSchema = new mongoose.Schema({
+    url: { type: String, required: true },  
+    fileName: { type: String, required: true },
+    fileType: { type: String },
+    uploadedAt: { type: Date, default: Date.now },
+});
 
-const chatSchema = new Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true
-    },
-    title: { type: String },
+const messageSchema = new mongoose.Schema({
+    role: { type: String, enum: ["user", "ai"], required: true },
+    content: { type: String },
+    files: [fileSchema],
+    replyTo: { type: mongoose.Schema.Types.ObjectId, ref: "Conversation.messages" }, 
+    editedAt: { type: Date },
+});
+
+const conversationSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, 
+    class: { type: mongoose.Schema.Types.ObjectId, ref: "Class", required: true },
+    subject: { type: mongoose.Schema.Types.ObjectId, ref: "Subject", required: true },
+    title: { type: String, required: true },
     messages: [messageSchema],
-    totalInputTokens: { type: Number, default: 0 },
-    totalOutputTokens: { type: Number, default: 0 },
-    totalTokens: { type: Number, default: 0 }
-}, { timestamps: true });
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+});
 
-module.exports = mongoose.model("chat", chatSchema);
+module.exports = mongoose.model("Conversation", conversationSchema);
