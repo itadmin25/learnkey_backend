@@ -7,7 +7,7 @@ const path = require("path");
 const Country = require("../model/countryModel");
 const Year = require("../model/yearModel");
 const Subject = require("../model/subjectModel");
-const Class = require("../model/conversationModel");
+const Class = require("../model/classModel");
 
 const MONGO_URI = process.env.MONGODB_URL;
 
