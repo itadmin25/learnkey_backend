@@ -16,9 +16,9 @@ const messageSchema = new mongoose.Schema({
 });
 
 const conversationSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, 
-    class: { type: mongoose.Schema.Types.ObjectId, ref: "Class", required: true },
-    subject: { type: mongoose.Schema.Types.ObjectId, ref: "Subject", required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, 
+    classId: { type: mongoose.Schema.Types.ObjectId, ref: "Class", required: true },
+    subjectId: { type: mongoose.Schema.Types.ObjectId, ref: "Subject", required: true },
     title: { type: String, required: true },
     messages: [messageSchema],
     createdAt: { type: Date, default: Date.now },

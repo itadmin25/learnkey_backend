@@ -15,9 +15,9 @@ exports.createConversation = async (req, res) => {
       const userMessage = { role: "user", content: question, files: files || [] };
 
       const newConversation = new Conversation({
-         user: userId,
-         class: classId,
-         subject: subjectId,
+         userId: userId,
+         classId: classId,
+         subjectId: subjectId,
          title,
          messages: [userMessage],
       });

@@ -35,24 +35,24 @@ const importData = async () => {
       for (const classObj of countryObj.classes) {
         // Insert class (linked directly to country)
         const classDoc = await Class.findOneAndUpdate(
-          { class: classObj.class, country: country._id },
-          { class: classObj.class, country: country._id },
+          { class: classObj.class, countryId: country._id },
+          { class: classObj.class, countryId: country._id },
           { new: true, upsert: true }
         );
 
         for (const yearObj of classObj.years) {
           // Insert year (reference class only)
           const year = await Year.findOneAndUpdate(
-            { year: yearObj.year, class: classDoc._id },
-            { year: yearObj.year, class: classDoc._id },
+            { year: yearObj.year, classId: classDoc._id },
+            { year: yearObj.year, classId: classDoc._id },
             { new: true, upsert: true }
           );
 
           for (const subjectName of yearObj.subjects) {
             // Insert subject
             await Subject.findOneAndUpdate(
-              { name: subjectName, year: year._id },
-              { name: subjectName, year: year._id },
+              { name: subjectName, yearId: year._id },
+              { name: subjectName, yearId: year._id },
               { new: true, upsert: true }
             );
           }

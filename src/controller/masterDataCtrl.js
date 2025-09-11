@@ -37,6 +37,7 @@ module.exports = {
           return res.status(400).json({ success: false, message: "Invalid classId" });
         }
         const classDoc = await Class.findById(classId).select("_id");
+        console.log(classDoc);
         if (!classDoc) return res.status(404).json({ success: false, message: "Class not found" });
 
         const years = await Year.find({ class: classId })
@@ -63,7 +64,7 @@ module.exports = {
           .select("_id class")
           .sort({ class: 1 })
           .lean();
-
+        console.log(classes)
         return res.status(200).json({
           success: true,
           level: "classes",
