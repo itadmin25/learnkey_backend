@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Country = require("../model/countryModel");
-const Class = require("../model/chatModel");
+const Class = require("../model/classModel");
 const Year = require("../model/yearModel");
 const Subject = require("../model/subjectModel");
 
