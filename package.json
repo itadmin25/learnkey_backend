@@ -22,9 +22,11 @@
     "express": "^5.1.0",
     "gpt3-tokenizer": "^1.1.5",
     "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.10.0",
     "mongoose": "^8.17.2",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
-    "pdf-parse": "^1.1.1"
+    "pdf-parse": "^1.1.1",
+    "xlsx": "^0.18.5"
   }
 }

@@ -1,4 +1,4 @@
-// utils/pdfHelper.js
+// helper/pdfExtract.js
 const pdfParse = require("pdf-parse");
 
 async function extractPdf(buffer) {
