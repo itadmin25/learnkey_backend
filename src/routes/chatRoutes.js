@@ -7,7 +7,7 @@ const uploads = require('../middileware/multer.js')
 router.post("/chat", jwtAuth, uploads.array("files"), chatController.createConversation);
 router.post("/chat/message", jwtAuth, uploads.array("files"), chatController.addMessage);
 router.get("/getConversationTitlesByUserId", jwtAuth, chatController.getConversationTitles);
-router.get("/getConversationDetails", chatController.getConversationDetails);
+router.get("/getConversationDetails",jwtAuth, chatController.getConversationDetails);
 
 
 
