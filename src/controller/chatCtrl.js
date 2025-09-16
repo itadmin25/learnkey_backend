@@ -137,3 +137,81 @@ ${question}
       res.status(500).json({ message: "Internal server error", error: err.message });
    }
 };
+exports.getConversationTitles = async (req, res) => {
+   try {
+      const { userId } = req.query;
+
+      if (!userId) {
+         return res.status(400).json({ success: false, message: "userId is required" });
+      }
+
+      // Fetch only required fields
+      const conversations = await Conversation.find({ userId })
+         .select("_id title createdAt updatedAt")
+         .sort({ updatedAt: -1 });
+
+      if (!conversations || conversations.length === 0) {
+         return res.status(404).json({ success: false, message: "No chats found for this user" });
+      }
+
+      res.status(200).json({
+         success: true,
+         message: "Successfully fetched conversation titles",
+         data: conversations,
+      });
+   } catch (err) {
+      console.error("❌ getConversationTitles error:", err);
+      res.status(500).json({ message: "Internal server error", error: err.message });
+   }
+};
+exports.getConversationDetails = async (req, res) => {
+   try {
+      const { conversationId } = req.query;
+
+      if (!conversationId) {
+         return res.status(400).json({ success: false, message: "conversationId is required" });
+      }
+
+      const conversation = await Conversation.findById(conversationId)
+         .select("_id title messages createdAt updatedAt");
+
+      if (!conversation) {
+         return res.status(404).json({ success: false, message: "Conversation not found" });
+      }
+
+      const formattedChats = [];
+      conversation.messages.forEach(msg => {
+         if (msg.role === "user") {
+            const aiResponse = conversation.messages.find(
+               m => m.role === "ai" && String(m.replyTo) === String(msg._id)
+            );
+
+            formattedChats.push({
+               question: msg.content,
+               questionFiles: msg.files || [],
+               answer: aiResponse ? aiResponse.content : null,
+               answerFiles: aiResponse ? aiResponse.files || [] : [],
+               createdAt: msg.createdAt || conversation.createdAt,
+            });
+         }
+      });
+
+      res.status(200).json({
+         success: true,
+         message: "Successfully fetched conversation details",
+         data: {
+            _id: conversation._id,
+            title: conversation.title,
+            createdAt: conversation.createdAt,
+            updatedAt: conversation.updatedAt,
+            chats: formattedChats,
+         },
+      });
+   } catch (err) {
+      console.error("❌ getConversationDetails error:", err);
+      res.status(500).json({ message: "Internal server error", error: err.message });
+   }
+};
+
+
+
