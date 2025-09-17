@@ -217,42 +217,44 @@ module.exports = {
   }
 },
 
- availableSubjects: async (req, res) => {
-  try {
-    let { classId } = req.query;
+availableSubjects: async (req, res) => {
+    try {
+      let { classId, 'classId[]': classIdArray } = req.query;
+      classId = classId || classIdArray;
 
-    if (!classId) {
-      return res.status(400).json({ message: "classId is required" });
-    }
 
-    // If only one classId is sent, wrap it in array
-    if (!Array.isArray(classId)) {
-      classId = [classId];
-    }
-
-    const curriculums = await Curriculum.find({ classId: { $in: classId } })
-      .populate("subjectId", "name");
-
-    const uniqueSubjects = {};
-    curriculums.forEach(c => {
-      if (c.subjectId) {
-        uniqueSubjects[c.subjectId._id] = c.subjectId.name;
+      if (!classId) {
+        return res.status(400).json({ message: "classId is required" });
       }
-    });
 
-    const subjects = Object.keys(uniqueSubjects).map(id => ({
-      _id: id,
-      name: uniqueSubjects[id],
-    }));
+      // If only one classId is sent, wrap it in array
+      if (!Array.isArray(classId)) {
+        classId = [classId];
+      }
 
-    res.status(200).json({
-      success: true,
-      message: "Successfully fetched all subjects",
-      data: subjects,
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+      const curriculums = await Curriculum.find({ classId: { $in: classId } })
+        .populate("subjectId", "name");
+
+      const uniqueSubjects = {};
+      curriculums.forEach(c => {
+        if (c.subjectId) {
+          uniqueSubjects[c.subjectId._id] = c.subjectId.name;
+        }
+      });
+
+      const subjects = Object.keys(uniqueSubjects).map(id => ({
+        _id: id,
+        name: uniqueSubjects[id],
+      }));
+
+      res.status(200).json({
+        success: true,
+        message: "Successfully fetched all subjects",
+        data: subjects,
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   }
-}
 
 };
