@@ -180,11 +180,24 @@ exports.getConversationDetails = async (req, res) => {
       }
 
       const formattedChats = [];
-      conversation.messages.forEach(msg => {
+      const messages = conversation.messages || [];
+
+      for (let i = 0; i < messages.length; i++) {
+         const msg = messages[i];
+
          if (msg.role === "user") {
-            const aiResponse = conversation.messages.find(
-               m => m.role === "ai" && String(m.replyTo) === String(msg._id)
+            // First try replyTo
+            let aiResponse = messages.find(
+               m => m.role === "ai" && m.replyTo && String(m.replyTo) === String(msg._id)
             );
+
+            // Fallback: next AI message
+            if (!aiResponse) {
+               const nextMsg = messages[i + 1];
+               if (nextMsg && nextMsg.role === "ai") {
+                  aiResponse = nextMsg;
+               }
+            }
 
             formattedChats.push({
                question: msg.content,
@@ -194,7 +207,7 @@ exports.getConversationDetails = async (req, res) => {
                createdAt: msg.createdAt || conversation.createdAt,
             });
          }
-      });
+      }
 
       res.status(200).json({
          success: true,
@@ -212,6 +225,7 @@ exports.getConversationDetails = async (req, res) => {
       res.status(500).json({ message: "Internal server error", error: err.message });
    }
 };
+
 
 
 
