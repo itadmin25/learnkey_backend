@@ -1,4 +1,5 @@
 const Conversation = require("../model/chatModel");
+const Curriculum = require("../model/curriculumModel.js");
 const { searchQdrant } = require("../helper/searchQdrant");
 const { handleFileUpload } = require("../helper/handleFileUpload");
 const callLLM = require("../helper/llm");
@@ -30,13 +31,15 @@ async function buildContext(question, userId, conversationId, classId, yearId, s
 
 exports.createConversation = async (req, res) => {
    try {
-      const { userId, classId, yearId, subjectId, question } = req.body;
+      const { userId, classId, subjectId, question } = req.body;
       const files = req.files || [];
 
-      if (!userId || !classId || !yearId || !subjectId || !question) {
+      if (!userId || !classId || !subjectId || !question) {
          return res.status(400).json({ success: false, message: "All fields required" });
       }
 
+      const findYear = await Curriculum.findOne({ classId, subjectId })
+      const yearId = findYear.yearId
       const title = question.length > 50 ? question.substring(0, 47) + "..." : question;
       const newConversation = new Conversation({ userId, classId, subjectId, title, messages: [] });
       const savedConversation = await newConversation.save();
@@ -87,13 +90,14 @@ ${question}
 exports.addMessage = async (req, res) => {
    try {
       const { chatId } = req.query;
-      const { userId, classId, yearId, subjectId, question } = req.body;
+      const { userId, classId, subjectId, question } = req.body;
       const files = req.files || [];
 
-      if (!chatId || !userId || !classId || !yearId || !subjectId || !question) {
+      if (!chatId || !userId || !classId || !subjectId || !question) {
          return res.status(400).json({ success: false, message: "All fields required" });
       }
-
+      const findYear = await Curriculum.findOne({ classId, subjectId })
+      const yearId = findYear.yearId
       const conversation = await Conversation.findById(chatId);
       if (!conversation) return res.status(404).json({ success: false, message: "Conversation not found" });
 
