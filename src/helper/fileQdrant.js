@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { getEmbedding } = require("./qdrant"); // your existing embedding function
-const QDRANT_URL = "http://localhost:6333";
+const QDRANT_URL = process.env.QDRANT_URL;
 const MAX_CONTEXT_LENGTH = 2000; // limit for LLM context
 
 /**

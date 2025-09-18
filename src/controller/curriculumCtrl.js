@@ -16,7 +16,7 @@ const { embedAndSaveText } = require("../helper/qdrant.js");
 
 const { QdrantClient } = require("@qdrant/js-client-rest");
 const qdrantClient = new QdrantClient({
-  url: process.env.QDRANT_URL || "http://localhost:6333",
+  url: process.env.QDRANT_URL,
 });
 
 // Token count helper

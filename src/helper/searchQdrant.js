@@ -2,7 +2,7 @@ const axios = require("axios");
 const { getEmbedding } = require("../helper/qdrant");
 const getCollectionName = require("./getCollectionName");
 
-const QDRANT_URL = "http://localhost:6333";
+const QDRANT_URL = process.env.QDRANT_URL;
 const MAX_CONTEXT_LENGTH = 2000; // max chars for LLM context
 
 async function searchQdrant(question, classId, yearId, subjectId, limit = 5, customCollection = null) {

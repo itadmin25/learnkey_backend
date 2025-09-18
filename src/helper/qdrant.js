@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const OLLAMA_URL = "http://3.24.151.87:11434/api/embeddings";
-const QDRANT_URL = "http://localhost:6333";
+const QDRANT_URL = process.env.QDRANT_URL
 const MODEL = "nomic-embed-text";
 const MAX_CHARS = 2000;
 const BATCH_SIZE = 10;
